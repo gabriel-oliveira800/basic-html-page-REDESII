@@ -1,0 +1,5 @@
+---
+- name: Instalar e configurar o ContainerD
+  hosts: all
+  tasks: 
+  - 
