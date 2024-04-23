@@ -1,0 +1,11 @@
+[control_plane]
+localhost
+
+[worker_node]
+IP_ADDRESS_01
+IP_ADDRESS_02
+
+
+[worker_node:vars]
+ansible_ssh_private__key_file=PATH_OF_SSH_PRIVATE_KEY_IN_LOCAL_HOST
+ansible_user=root
