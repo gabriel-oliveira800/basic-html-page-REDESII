@@ -48,7 +48,13 @@ Para executar os playbooks do Ansible, siga estas etapas:
 
 ## 📦 Implantação
 
-Após configurar o ambiente usando os playbooks do Ansible, o cluster estará pronto para uso.
+Após configurar o ambiente usando os playbooks do Ansible, o cluster estará pronto para uso. Instale o nginx no node master para testar o funcionamento do cluster.
+
+1. Conecte-se ao master e execute `kubectl get nodes` para ver nodes do cluster criado.
+
+2. Execute `kubectl create deployment nginx --image nginx --port 80` para criar uma image do nginx.
+
+3. Execute `kubectl expose deployment nginx --type NodePort --port 80` para criar um serviço. Rode `kubectl get svc` para ver os serviços criados. Poder ser simplificado pr `kubectl apply -f deployment.yaml`
 
 <p style="text-align: center;"> ⌨️ por <a href="https://github.com/gabriel-oliveira800">Gabriel Oliveira</a>
  😊 </p>
