@@ -36,12 +36,15 @@ Antes de executar os playbooks do Ansible, certifique-se de que os seguintes req
 
 Para executar os playbooks do Ansible, siga estas etapas:
 
-1. Edite o arquivo de inventário (`./hosts`) para adicionar os IPs ou nomes de host dos nós do seu cluster.
+1. Edite o arquivo de inventário (`./config/hosts`) para adicionar os IPs ou nomes de host dos nós do seu cluster.
 
 2. Execute o playbook desejado, por exemplo:
+
    ```
-   ansible-playbook -i hosts playbook.yml
+   ansible-playbook -i config/hosts playbook.yml
    ```
+
+3. Conecte-se ao master e execute `kubectl get nodes` para ver nodes do cluster criado. Rode `kubeadm token create --print-join-command` para agrupar outras maquinas na cluster
 
 ## 📦 Implantação
 
