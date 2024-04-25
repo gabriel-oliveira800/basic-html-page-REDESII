@@ -24,6 +24,12 @@ Antes de executar os playbooks do Ansible, certifique-se de que os seguintes req
    git clone https://github.com/gabriel-oliveira800/redes
    ```
 
+   ou
+
+   ```
+   git clone -b ansible-cluster https://github.com/gabriel-oliveira800/redes
+   ```
+
 3. Acesse o diretório do projeto:
 
    ```
