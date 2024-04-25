@@ -1,31 +1,66 @@
-# Redes II e Tópicos Avançado de Redes
+# Cluster com Ansible
 
-Este repositório contém materiais e projetos desenvolvidos durante o curso de Redes e Tópicos Avançados de Rede.
+Este diretório contém projetos relacionados à criação e gerenciamento de um cluster utilizando Ansible.
 
-## 🚀 Começando
+## 📂 Estrutura do Diretório
 
-Estas instruções permitirão que você tenha uma cópia dos projetos em execução na sua máquina local para fins de estudo e desenvolvimento.
-
-- [Servidor Web](./servidor-web): Material relacionado ao desenvolvimento e configuração de um servidor web.
-
-<image src="servidor-web\assets\apache2_root_page.png" style="width: 400px;">
-
-<br>
-
-- [Cluster com Ansible](./cluster-with-ansible): Projetos relacionados à criação e gerenciamento de um cluster usando Ansible.
-  - <image src="cluster-with-ansible\assets\kubernetes.svg" style="width: 14px;"> Kubernetes
-  - <image src="cluster-with-ansible\assets\ansible.svg" style="width: 14px;"> Ansible
-  - <image src="cluster-with-ansible\assets\git.svg" style="width: 14px;"> Git
-  - <image src="cluster-with-ansible\assets\terraform.svg" style="width: 14px;"> Terraform
+- [ansible-playbooks](./playbook.yaml): Playbook do Ansible para configuração e gerenciamento do cluster.
+- [inventory](./hosts): Arquivos de inventário do Ansible para definir os nós do cluster.
 
 ## 📋 Pré-requisitos
 
-Para executar os projetos, é necessário ter algumas ferramentas instaladas:
+Antes de executar os playbooks do Ansible, certifique-se de que os seguintes requisitos estão atendidos:
 
-- Git <image src="cluster-with-ansible\assets\git.svg" style="width: 28px;">
-- Maquina Debian 11 ou qualquer distribuição Linux <image src="cluster-with-ansible\assets\debian.svg" style="width: 14px;">
+- Ansible instalado na máquina de controle.
+- Chaves SSH configuradas para acesso aos nós do cluster.
 
----
+### 🔧 Instalação
+
+1. Instale o [Ansible](docs.ansible.com/ansible/latest/installation_guide/installation_distros.html) no seu ambiente.
+
+2. Clone este repositório:
+
+   ```
+   git clone https://github.com/gabriel-oliveira800/redes
+   ```
+
+   ou
+
+   ```
+   git clone -b ansible-cluster https://github.com/gabriel-oliveira800/redes
+   ```
+
+3. Acesse o diretório do projeto:
+
+   ```
+   cd cluster-with-ansible
+   ```
+
+4. Execute os playbooks conforme necessário.
+
+## ⚙️ Executando os Playbooks
+
+Para executar os playbooks do Ansible, siga estas etapas:
+
+1. Edite o arquivo de inventário (`./config/hosts`) para adicionar os IPs ou nomes de host dos nós do seu cluster.
+
+2. Execute o playbook desejado, por exemplo:
+
+   ```
+   ansible-playbook -i config/hosts playbook.yml
+   ```
+
+3. Conecte-se ao master e execute `kubectl get nodes` para ver nodes do cluster criado. Rode `kubeadm token create --print-join-command` para agrupar outras maquinas na cluster
+
+## 📦 Implantação
+
+Após configurar o ambiente usando os playbooks do Ansible, o cluster estará pronto para uso. Instale o nginx no node master para testar o funcionamento do cluster.
+
+1. Conecte-se ao master e execute `kubectl get nodes` para ver nodes do cluster criado.
+
+2. Execute `kubectl create deployment nginx --image nginx --port 80` para criar uma image do nginx.
+
+3. Execute `kubectl expose deployment nginx --type NodePort --port 80` para criar um serviço. Rode `kubectl get svc` para ver os serviços criados. Poder ser simplificado pr `kubectl apply -f deployment.yaml`
 
 <p style="text-align: center;"> ⌨️ por <a href="https://github.com/gabriel-oliveira800">Gabriel Oliveira</a>
  😊 </p>
